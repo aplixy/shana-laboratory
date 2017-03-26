@@ -1,8 +1,8 @@
-package com.shana.laboratory.sheet.dao;
+package com.shana.laboratory.sheetimage.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.shana.laboratory.sheet.pojo.LaboratorySheetImage;
+import com.shana.laboratory.sheetimage.pojo.LaboratorySheetImage;
 
 /**
  * @author Lidan Li

@@ -1,4 +1,4 @@
-package com.shana.laboratory.sheet.action;
+package com.shana.laboratory.sheetimage.action;
 
 import java.util.Map;
 
