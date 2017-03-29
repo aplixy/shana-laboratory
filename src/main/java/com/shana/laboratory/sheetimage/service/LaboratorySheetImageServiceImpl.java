@@ -21,9 +21,9 @@ import com.shana.laboratory.sheetimage.pojo.LaboratorySheetImageRow;
 
 public class LaboratorySheetImageServiceImpl implements LaboratorySheetImageService {
 	private static final int LOCATION_PADDING = 0;
-	public static final String APP_ID = "";
-	public static final String API_KEY = "";
-	public static final String SECRET_KEY = "";
+	public static final String APP_ID = "9421994";
+	public static final String API_KEY = "v8MZbz4VZrOS5dHsR2X7dVup";
+	public static final String SECRET_KEY = "nyyDoGRyqqACPQzOGXDD3cvIhnTcsIbd";
 
 	@Override
 	public LaboratorySheetImage uploadSheetImage(byte[] image) throws Exception {
