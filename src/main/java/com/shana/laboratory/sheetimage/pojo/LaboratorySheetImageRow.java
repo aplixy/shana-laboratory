@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class LaboratorySheetImageRow {
 	@Id
 	private String id;
 	private String imageId;
+	
+	@OneToMany(mappedBy="rowId")
 	private List<LaboratorySheetImageColumn> columns;
 	private int maxTop;
 	private int minTop;

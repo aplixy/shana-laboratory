@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,6 +17,8 @@ public class LaboratorySheetImage {
 	private byte[] imageByte;	
 	private String text;
 	private String md5;
+	
+	@OneToMany(mappedBy="imageId")
 	private List<LaboratorySheetImageRow> rows;
 	
 	public String getId() {

@@ -10,6 +10,6 @@ import com.shana.laboratory.index.pojo.LaboratoryIndex;
 
 public interface LaboratoryIndexRepository extends CrudRepository<LaboratoryIndex, String> {
 
-
+	LaboratoryIndex findByCode(String code);
 
 }

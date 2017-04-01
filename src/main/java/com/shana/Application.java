@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages="com.shana")
 @ComponentScan({"com.shana"})
-public class ApplicationConfiguration {
+public class Application {
 	
 	
 
@@ -28,7 +28,7 @@ public class ApplicationConfiguration {
 
     public static void main(String[] args) {
     	
-        SpringApplication.run(ApplicationConfiguration.class, args);    	
+        SpringApplication.run(Application.class, args);    	
     }
     
 }
