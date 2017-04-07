@@ -15,7 +15,7 @@ import com.shana.laboratory.index.pojo.LaboratoryIndexDraft;
 import com.shana.laboratory.index.service.LaboratoryIndexDraftService;
 
 @RestController
-@RequestMapping("/laboratoryindexdrafts")
+@RequestMapping("/laboratoryIndexDrafts")
 public class LaboratoryIndexDraftController {
 	
 	@Autowired
@@ -25,15 +25,14 @@ public class LaboratoryIndexDraftController {
 	public Map<String,Object> create(@RequestBody LaboratoryIndexDraft index) throws Exception {
 		Map<String,Object> result=new HashMap<String,Object>();
 		LaboratoryIndexDraft laboratloryIndex = LaboratoryIndexDraftService.create(index);
-		result.put("data", laboratloryIndex);
+		result.put("id", laboratloryIndex.getId());
 		return result;
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
 	public Map<String,Object> update(@RequestBody LaboratoryIndexDraft index) throws Exception {
 		Map<String,Object> result=new HashMap<String,Object>();
-		LaboratoryIndexDraft laboratloryIndex =LaboratoryIndexDraftService.update(index);
-		result.put("data", laboratloryIndex);
+		LaboratoryIndexDraftService.update(index);
 		return result;
 	}
 
