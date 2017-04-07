@@ -15,7 +15,7 @@ import com.shana.laboratory.index.pojo.LaboratoryIndexDraft;
 import com.shana.laboratory.index.service.LaboratoryIndexDraftService;
 
 @RestController
-@RequestMapping("/laboratoryIndexDrafts")
+@RequestMapping("/laboratoryindexdrafts")
 public class LaboratoryIndexDraftController {
 	
 	@Autowired
