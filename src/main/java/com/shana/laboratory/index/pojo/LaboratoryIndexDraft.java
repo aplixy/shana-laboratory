@@ -17,8 +17,47 @@ public class LaboratoryIndexDraft {
 	private Double minNormal;
     private Double maxNormal;
     private String unit;
+    private String editor;
+    private String approver;
+    private String approvalResult;
+    private String approvalOpinion;
+    
+    //CREATING  APPROVING  APPROVAL_SUCCESS  APPROVAL_REJECT
+    private String status;
+    
+    
 	
-    public String getId() {
+    public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getEditor() {
+		return editor;
+	}
+	public void setEditor(String editor) {
+		this.editor = editor;
+	}
+	public String getApprover() {
+		return approver;
+	}
+	public void setApprover(String approver) {
+		this.approver = approver;
+	}
+	public String getApprovalResult() {
+		return approvalResult;
+	}
+	public void setApprovalResult(String approvalResult) {
+		this.approvalResult = approvalResult;
+	}
+	public String getApprovalOpinion() {
+		return approvalOpinion;
+	}
+	public void setApprovalOpinion(String approvalOpinion) {
+		this.approvalOpinion = approvalOpinion;
+	}
+	public String getId() {
 		return id;
 	}
 	public void setId(String id) {

@@ -11,5 +11,5 @@ public interface LaboratoryIndexDraftService {
 	public void delete(String indexId) throws Exception;
 	public LaboratoryIndexDraft get(String indexId) throws Exception;
 	public List<LaboratoryIndexDraft> gets(String type, String code,String cnName,Integer pageIndex,Integer pageSize) throws Exception;
-
+	public LaboratoryIndexDraft patch(LaboratoryIndexDraft index) throws Exception;
 }
