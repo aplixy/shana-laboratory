@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.shana.exception.ShanaException;
+import com.shana.exception.ShanaInputParameterIsNullException;
 import com.shana.laboratory.index.dao.LaboratoryIndexRepository;
 import com.shana.laboratory.index.pojo.LaboratoryIndex;
 import com.shana.utils.IdUtils;
@@ -40,11 +42,11 @@ public class LaboratoryIndexServiceImpl implements LaboratoryIndexService {
 	public void delete(String indexId) throws Exception {
 		if(StringUtils.isEmpty(indexId))
 		{
-			throw new Exception("The input parameter 'indexId' is null.");
+			throw new ShanaInputParameterIsNullException("id");
 		}
 		if(null==laboratoryIndexRepository.findOne(indexId))
 		{
-			throw new Exception("The laboratory index object is null,witch id is "+indexId+".");
+			throw new ShanaException("object_is_null","The laboratory index object is null,witch id is "+indexId+".",null);
 		}
 		laboratoryIndexRepository.delete(indexId);
 		
@@ -55,7 +57,7 @@ public class LaboratoryIndexServiceImpl implements LaboratoryIndexService {
 	public LaboratoryIndex get(String indexId) throws Exception {
 		if(StringUtils.isEmpty(indexId))
 		{
-			throw new Exception("The input parameter 'indexId' is null.");
+			throw new ShanaInputParameterIsNullException("id");
 		}
 		return laboratoryIndexRepository.findOne(indexId);
 	}
@@ -73,32 +75,34 @@ public class LaboratoryIndexServiceImpl implements LaboratoryIndexService {
 		LaboratoryIndex laboratoryIndex = laboratoryIndexRepository.findByCode(code);
 		if(null!=laboratoryIndex)
 			if(StringUtils.isEmpty(index.getUnit()))
-				throw new Exception("The laboratory index object is duplicate, which code is "+code+".");
+				throw new ShanaException("object_is_duplicate","The laboratory index object is duplicate, which code is "+code+".",null);
 			
 	}
 
 	private void validateWhenUpdate(LaboratoryIndex index) throws Exception {
 		validateInputParameterIsNotNull(index);
 		if(StringUtils.isEmpty(index.getId()))
-			throw new Exception("The input parameter id is null.");
+			throw new ShanaInputParameterIsNullException("id");
 		
 	}
 	
 	private void validateInputParameterIsNotNull(LaboratoryIndex index) throws Exception {
 		if(null==index)
-			throw new Exception("The input parameter is null.");
+			throw new ShanaInputParameterIsNullException("");
 		if(StringUtils.isEmpty(index.getCode()))
-			throw new Exception("The input parameter code is null.");
+			throw new ShanaInputParameterIsNullException("code");
 		
 		if(StringUtils.isEmpty(index.getType()))
-			throw new Exception("The input parameter type is null.");
+			throw new ShanaInputParameterIsNullException("type");
+		
 		if(StringUtils.isEmpty(index.getCnName()))
-			throw new Exception("The input parameter cnName is null.");
+			throw new ShanaInputParameterIsNullException("cnName");
+		
 		if(StringUtils.isEmpty(index.getEnName()))
-			throw new Exception("The input parameter enName is null.");
+			throw new ShanaInputParameterIsNullException("enName");
 		
 		if(StringUtils.isEmpty(index.getUnit()))
-			throw new Exception("The input parameter unit is null.");
+			throw new ShanaInputParameterIsNullException("unit");
 			
 	}
 

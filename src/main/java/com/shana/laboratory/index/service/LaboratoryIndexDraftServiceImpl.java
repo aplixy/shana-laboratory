@@ -56,7 +56,7 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 			throw new ShanaInputParameterIsNullException("id");
 		}
 		if (null == laboratoryIndexDraftRepository.findOne(indexDraftId)) {
-			throw new ShanaException("object_is_null","The laboratory index object is null,witch id is " + indexDraftId + ".",null);
+			throw new ShanaException("object_is_null","The laboratory index draft object is null,witch id is " + indexDraftId + ".",null);
 		}
 		laboratoryIndexDraftRepository.delete(indexDraftId);
 
@@ -67,12 +67,7 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 		if (StringUtils.isEmpty(indexDraftId)) {
 			throw new ShanaInputParameterIsNullException("id");
 		}
-		// return LaboratoryIndexDraftRepository.findOne(indexDraftId);
-		LaboratoryIndexDraft indexDraft = new LaboratoryIndexDraft();
-		indexDraft.setCode("lldcode");
-		indexDraft.setCnName("中国年我");
-		indexDraft.setEnName("en nae");
-		return indexDraft;
+	    return laboratoryIndexDraftRepository.findOne(indexDraftId);
 
 	}
 
@@ -103,35 +98,6 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 			if(!StringUtils.isEmpty(status))
 			{
 				oldIndexDraft.setStatus(status);
-			}
-	
-			String editor=indexDraft.getEditor();
-			if(!StringUtils.isEmpty(editor))
-			{
-				oldIndexDraft.setEditor(editor);
-			}
-			String approver=indexDraft.getApprover();
-			if(!StringUtils.isEmpty(approver))
-			{
-				oldIndexDraft.setApprover(approver);
-			}
-			String approvalResult=indexDraft.getApprovalResult();
-			if(!StringUtils.isEmpty(approvalResult))
-			{
-				oldIndexDraft.setApprovalResult(approvalResult);
-				if("OK".equals(approvalResult))
-				{
-					oldIndexDraft.setStatus("APPROVAL_SUCCESS");
-				}
-				else
-				{
-					oldIndexDraft.setStatus("APPROVAL_REJECT");
-				}
-			}
-			String approvalOpinion=indexDraft.getApprovalOpinion();
-			if(!StringUtils.isEmpty(approvalOpinion))
-			{
-				oldIndexDraft.setApprovalOpinion(approvalOpinion);
 			}
 		}
 		else
