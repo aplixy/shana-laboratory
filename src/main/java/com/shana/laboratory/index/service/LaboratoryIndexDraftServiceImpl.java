@@ -21,6 +21,7 @@ import com.shana.exception.ShanaException;
 import com.shana.exception.ShanaInputParameterIsNullException;
 import com.shana.laboratory.index.dao.LaboratoryIndexDraftRepository;
 import com.shana.laboratory.index.pojo.LaboratoryIndexDraft;
+import com.shana.resultset.ResultSet;
 import com.shana.utils.IdUtils;
 
 @Service
@@ -72,7 +73,7 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 	}
 
 	@Override
-	public List<LaboratoryIndexDraft> gets(String type, String code, String cnName, Integer pageIndex, Integer pageSize)
+	public ResultSet<LaboratoryIndexDraft> gets(String type, String code, String cnName, Integer pageIndex, Integer pageSize)
 			throws Exception {
 		if (null == pageIndex || 1 > pageIndex)
 			pageIndex = 1;
@@ -81,7 +82,11 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 		Sort sort = new Sort(Direction.DESC, "code");
 		Page<LaboratoryIndexDraft> laboratoryIndexDrafts = laboratoryIndexDraftRepository
 				.findAll(getWhere(type, code, cnName), new PageRequest(pageIndex - 1, pageSize, sort));
-		return laboratoryIndexDrafts.getContent();
+		ResultSet<LaboratoryIndexDraft> resultSet=new ResultSet<LaboratoryIndexDraft>();
+		resultSet.setData(laboratoryIndexDrafts.getContent());
+		resultSet.setTotalPage(laboratoryIndexDrafts.getTotalPages());
+		resultSet.setTotalRow(laboratoryIndexDrafts.getTotalElements());
+		return resultSet;
 	}
 	
 	@Override

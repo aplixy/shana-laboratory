@@ -1,7 +1,6 @@
 package com.shana.laboratory.index.action;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shana.laboratory.index.pojo.LaboratoryIndexDraft;
 import com.shana.laboratory.index.service.LaboratoryIndexDraftService;
+import com.shana.resultset.ResultSet;
 
 @RestController
 @RequestMapping("/laboratoryindexdrafts")
@@ -55,8 +55,10 @@ public class LaboratoryIndexDraftController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Map<String,Object> gets(String type, String code,String cnName,Integer pageIndex, Integer pageSize) throws Exception {
 		Map<String,Object> result=new HashMap<String,Object>();
-		List<LaboratoryIndexDraft> data = LaboratoryIndexDraftService.gets(type, code, cnName, pageIndex, pageSize);
-		result.put("data", data);
+		ResultSet<LaboratoryIndexDraft> resultSet = LaboratoryIndexDraftService.gets(type, code, cnName, pageIndex, pageSize);
+		result.put("data", resultSet.getData());
+		result.put("totalPage", resultSet.getTotalPage());
+		result.put("totalRow",  resultSet.getTotalRow());	
 		return result;
 	}
 
