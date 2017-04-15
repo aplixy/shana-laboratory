@@ -155,7 +155,7 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 			throw new ShanaInputParameterIsNullException("id");
 		
 		LaboratoryIndexDraft oldIndexDraft = laboratoryIndexDraftRepository.findOne(id);
-		if(null!=oldIndexDraft&&!"CREATING".equals(oldIndexDraft.getStatus()))
+		if(null!=oldIndexDraft&&!"CREATING".equals(oldIndexDraft.getStatus())&&!StringUtils.isEmpty(oldIndexDraft.getStatus()))
 		{
 			throw new ShanaException("forbidden","The laboratory draft object can not be update,when its status is not 'CREATING'.",null);
 		}
