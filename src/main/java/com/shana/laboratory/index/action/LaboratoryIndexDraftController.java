@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shana.exception.ShanaInputParameterIsNullException;
 import com.shana.laboratory.index.pojo.LaboratoryIndexDraft;
 import com.shana.laboratory.index.service.LaboratoryIndexDraftService;
 import com.shana.resultset.ResultSet;
@@ -62,10 +63,12 @@ public class LaboratoryIndexDraftController {
 		return result;
 	}
 
-	@RequestMapping(method = RequestMethod.PATCH)
-	public Map<String,Object> patch(@RequestBody LaboratoryIndexDraft index) throws Exception {
+	@RequestMapping(value="/{indexDraftId}/status",method = RequestMethod.POST)
+	public Map<String,Object> updateStatus(@PathVariable String indexDraftId,@RequestBody LaboratoryIndexDraft indexDraft) throws Exception {
+		if (null == indexDraft)
+			throw new ShanaInputParameterIsNullException("");
 		Map<String,Object> result=new HashMap<String,Object>();
-		LaboratoryIndexDraftService.patch(index);
+		LaboratoryIndexDraftService.updateStatus(indexDraftId, indexDraft.getStatus());
 		return result;
 	}
 }

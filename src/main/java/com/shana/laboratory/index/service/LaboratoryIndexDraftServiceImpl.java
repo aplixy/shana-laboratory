@@ -90,25 +90,25 @@ public class LaboratoryIndexDraftServiceImpl implements LaboratoryIndexDraftServ
 	}
 	
 	@Override
-	public LaboratoryIndexDraft patch(LaboratoryIndexDraft indexDraft) throws Exception {
-		if (null == indexDraft)
-			throw new ShanaInputParameterIsNullException("");
-		String id=indexDraft.getId();
+	public LaboratoryIndexDraft updateStatus(String id,String status) throws Exception {
+	
 		if (StringUtils.isEmpty(id))
 			throw new ShanaInputParameterIsNullException("id");
 		
+		if (StringUtils.isEmpty(status))
+			throw new ShanaInputParameterIsNullException("status");
+		
+		if ("APPROVAL_SUCCESS".equals(status)||"APPROVAL_REJECT".equals(status))
+			throw new ShanaException("input_is_invalid","The status value can not be 'APPROVAL_SUCCESS' or 'APPROVAL_REJECT'.",null);
+		
 		LaboratoryIndexDraft oldIndexDraft = laboratoryIndexDraftRepository.findOne(id);
 		if(null!=oldIndexDraft){
-			String status=indexDraft.getStatus();
-			if(!StringUtils.isEmpty(status))
+			if(!StringUtils.isEmpty(status)&&!"APPROVAL_SUCCESS".equals(oldIndexDraft.getStatus()))
 			{
 				oldIndexDraft.setStatus(status);
 			}
 		}
-		else
-		{
-			oldIndexDraft=indexDraft;
-		}	
+		
 		
 		return laboratoryIndexDraftRepository.save(oldIndexDraft);
 	}
